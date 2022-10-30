@@ -1,0 +1,19 @@
+@import '../../../common/style';
+
+.slider {
+  padding-top: 53px;
+  .slick-dots {
+    margin-bottom: 30px;
+    li button:before {
+      font-size: 11px;
+    }
+  }
+  .slick-dots li.slick-active button:before {
+    font-size: 18px;
+    color:$red;
+    opacity: 1;
+  }
+  .slider-arrow {
+    display: none;
+  }
+}

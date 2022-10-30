@@ -1,0 +1,17 @@
+@import "../../../common//style";
+
+.centerText {
+    text-align: -webkit-center;
+  .text {
+    font-size: 32px;
+    line-height: 66px;
+    font-weight: 500;
+    color: $black;
+  }
+  .line {
+    width: 60px;
+    height: 2.5px;
+    background: $red;
+    margin-top: -37px;
+  }
+}

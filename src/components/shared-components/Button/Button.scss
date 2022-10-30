@@ -1,0 +1,18 @@
+@import "../../../common/style";
+.custom-button {
+  button {
+    padding: 0px 36px;
+    font-weight: 700;
+    color: $white;
+    background-color: $red;
+    height: 42px;
+    font-size: 14px;
+    border: none;
+    @include text-transform($transform: uppercase);
+  }
+
+  .ant-btn:hover, .ant-btn:focus {
+    color: $white;
+    background-color: $black;
+}
+}
