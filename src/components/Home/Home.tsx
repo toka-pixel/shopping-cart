@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <>
      <Slider />
-    <AllProducts/>
+     <AllProducts/>
    
     </>
   )

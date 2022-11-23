@@ -1,10 +1,18 @@
 import React,{useEffect} from "react";
-import { getProducts } from "../../services/Product";
+
+
 import CenterText from "../shared-components/CenterText/CenterText";
+import {getAllProducts} from '../../store/Product/fetchProducts';
+import {useAppDispatch} from '../../hooks/index';
+
 export const AllProducts=()=>{
 
+    const dispatch = useAppDispatch();
+
     useEffect(()=>{
-        getProducts().then((res:any)=>console.log(res)).catch((e)=>console.log(e))
+
+       dispatch(getAllProducts());
+
     },[])
 
     return(
@@ -14,5 +22,6 @@ export const AllProducts=()=>{
     )
 
 }
+
 
 export default AllProducts
