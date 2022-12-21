@@ -9,6 +9,7 @@
 
 .firstSlide {
   @include background-image($image: "bg1.jpg");
+
   .right-text {
     @extend .paddingTop;
     p {

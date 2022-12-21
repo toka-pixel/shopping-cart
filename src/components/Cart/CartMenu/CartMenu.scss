@@ -1,0 +1,107 @@
+@import "../../../common/style";
+
+.CartMenu {
+  .drawer__overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    -webkit-backdrop-filter: blur(1px);
+    backdrop-filter: blur(1px);
+    box-shadow: red;
+  }
+  //left: -368px;
+  .menu {
+    width: 367px;
+    max-width: 90%;
+    background: $white;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 200;
+    transition: left 0.4s, right 0.4s;
+    // opacity: 0;
+    // visibility: hidden;
+    // transition: all 0.3s ease-in-out;
+  }
+}
+.openMenu {
+  right: 0;
+  left: auto;
+}
+.closeMenu {
+  right: -368px;
+  left: auto;
+}
+.cart {
+  .custom-button button {
+    width: 100%;
+    margin-top: 25px;
+  }
+}
+.cartProducts {
+  .cartProduct {
+    box-shadow: $boxShadow;
+    border-radius: 8px;
+    padding: 16px;
+    padding-bottom: 0;
+    margin-bottom: 10px;
+    @include text-overflow;
+  
+    img {
+      width: 45px;
+      height: 45px;
+    }
+    .title {
+      @include text-overflow;
+      font-size: 13px;
+      width: 146px;
+    }
+    .quantity {
+      padding: 0 12px;
+    }
+    svg {
+      font-size: 15px;
+      color: $green;
+      cursor: pointer;
+    }
+    .price {
+      text-align: end;
+    }
+  }
+}
+.totalPrice {
+  @include flex($display: flex, $justify: space-between);
+  padding-top: 18px;
+  label:nth-of-type(1) {
+    font-size: 17px;
+  }
+  label:nth-of-type(2) {
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
+
+.emptyCart {
+  flex: 1;
+  // flex-direction: column;
+  @include flex($display: flex, $justify: center, $align: center);
+  text-align: center;
+  .emptyItems {
+    img {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 15px;
+    }
+    p:nth-of-type(1) {
+      font-weight: 700;
+      font-size: 17px;
+    }
+    p::nth-of-type(2) {
+      margin-top: -8px;
+      font-size: 15px;
+    }
+  }
+}

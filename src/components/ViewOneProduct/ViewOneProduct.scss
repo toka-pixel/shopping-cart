@@ -1,0 +1,50 @@
+@import "../../common/style";
+
+.oneProduct {
+  padding-top: 30px;
+  margin: auto;
+  margin-top: 40px;
+  box-shadow: $boxShadow;
+  width: 70%;
+  padding: 30px 20px;
+  border-radius: 15px;
+  & {
+    @media (max-width: 900px) {
+      width: auto;
+    }
+  }
+  .outlined,
+  .filled,
+  .on,
+  .off {
+    color: $yellow;
+    font-size: 19px;
+  }
+
+  .styleImg {
+    text-align: center;
+    margin-bottom: 34px;
+    img {
+      width: 40%;
+      max-width: 40%;
+      height: 230px;
+    }
+  }
+  .description{
+    padding-top: 10px;
+  }
+  .title{
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .price{
+    font-size: 22px;
+  }
+  .category{
+    font-size: 16px;
+    color: $gray_3;
+    text-transform: capitalize;
+    font-weight: 600;
+  }
+}
+

@@ -2,20 +2,24 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "../../types/Product";
 import { getAllProducts } from "./fetchProducts";
 
-type TodosState = {
+type ProductState = {
   status: "loading" | "idle" | "failed";
   error: string | null;
   productsList: Product[];
   categories: string[];
-  totalPrice:number
+  totalPrice: number;
+  cartProducts: Product[];
+  totalQuantity: number;
 };
 
-const initialState: TodosState = {
+const initialState: ProductState = {
   productsList: [],
   error: null,
   status: "idle",
   categories: [],
-  totalPrice:0
+  totalPrice: 0,
+  cartProducts: [],
+  totalQuantity: 0,
 };
 
 export const productReducer = createSlice({
@@ -26,34 +30,43 @@ export const productReducer = createSlice({
     addProduct: (state, action: PayloadAction<Product>) => {
       const { id } = action.payload;
 
-      const index = state.productsList.findIndex(
+      const index = state.cartProducts.findIndex(
         (item: Product) => item.id === id
       );
+
+      state.totalQuantity++;
+      state.totalPrice = state.totalPrice + action.payload.price;
       if (index >= 0) {
-        state.productsList[index].quantity++;
+        state.cartProducts[index].quantity++;
       } else {
-        state.productsList.push({ ...action.payload, quantity: 1 });
+        state.cartProducts.push({ ...action.payload, quantity: 1 });
       }
     },
 
     removeProduct: (state, action: PayloadAction<Product>) => {
-      const index = state.productsList.findIndex(
+      const index = state.cartProducts.findIndex(
         (item: Product) => item.id === action.payload.id
       );
-      if (state.productsList[index].quantity >= 1) {
-        state.productsList[index].quantity--;
+      if (state.cartProducts[index].quantity >= 1) {
+        state.totalQuantity--;
+        state.totalPrice = state.totalPrice - action.payload.price;
+      }
+      if (state.cartProducts[index].quantity >= 1) {
+        state.cartProducts[index].quantity--;
+
         return;
-      } else if (state.productsList[index].quantity === 1) {
-        state.productsList = state.productsList.filter(
+      } else if (state.cartProducts[index].quantity === 1) {
+        state.cartProducts = state.cartProducts.filter(
           (product: Product) => product.id !== action.payload.id
         );
       }
     },
 
-    clearCart:(state)=>{
-      state.productsList=[];
-      state.totalPrice=0
-    }
+    clearCart: (state) => {
+      state.cartProducts = [];
+      state.totalPrice = 0;
+      state.totalQuantity = 0;
+    },
   },
 
   extraReducers: (builder) => {
@@ -63,7 +76,6 @@ export const productReducer = createSlice({
     });
 
     builder.addCase(getAllProducts.fulfilled, (state, { payload }) => {
-      console.log(payload)
       state.productsList.push(...payload);
       state.status = "idle";
       payload.map((product: Product) => {
@@ -74,8 +86,9 @@ export const productReducer = createSlice({
 
     builder.addCase(getAllProducts.rejected, (state, { payload }) => {
       // if (payload) state.error = payload.message;
-      console.log('fail')
       state.status = "failed";
     });
   },
 });
+
+export const { addProduct, removeProduct, clearCart } = productReducer.actions;

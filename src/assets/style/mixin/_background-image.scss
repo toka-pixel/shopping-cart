@@ -1,6 +1,6 @@
 @mixin background-image($image) {
-  $url: "../../imgs/#{$image}";
-  background-image: url($url);
+  $url: "imgs/#{$image}";
+  background-image: url("../../../../public/imgs/#{$image}");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

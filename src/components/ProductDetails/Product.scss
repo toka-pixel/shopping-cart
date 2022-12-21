@@ -1,0 +1,87 @@
+@import "../../common/style";
+
+.product {
+  // padding: 20px 12px;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  text-align: -webkit-center;
+  img {
+    width: 120px;
+    height: 130px;
+    margin-bottom: 42px;
+    margin-top: 50px;
+  }
+  .title {
+    font-size: 16px;
+    font-weight: 500;
+    width: 80%;
+    color: $black;
+    @include text-overflow;
+  }
+  .price {
+    font-size: 18px;
+    color: $red;
+  }
+  .add-to-cart {
+    // position: absolute;
+    bottom: -10px;
+    left: 0px;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .custom-button button {
+    width: 100%;
+  }
+  .like {
+    position: absolute;
+    top: 18px;
+    right: 0px;
+    cursor: pointer;
+    color: $black;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    transform: translate(0px, 0px);
+  }
+  .like:hover {
+    color: $red;
+  }
+
+  .is-active {
+    animation-name: animate;
+    animation-duration: 0.8s;
+    animation-iteration-count: 1;
+    animation-timing-function: steps(28);
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes animate {
+    0% {
+      background-position: left;
+    }
+    50% {
+      background-position: right;
+    }
+    100% {
+      background-position: right;
+    }
+  }
+}
+
+.product:hover .add-to-cart,
+.product:hover .like {
+  transform: translate(0px, 0px);
+  opacity: 1;
+  visibility: visible;
+}
+.product:hover .add-to-cart {
+  bottom: 0;
+}
+.product:hover .like {
+  right: 22px;
+}
+.product:hover {
+  box-shadow: $boxShadow;
+}

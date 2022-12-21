@@ -1,0 +1,24 @@
+@import "../../common/style";
+
+.ant-tabs {
+  align-items: center;
+  padding-bottom: 40px;
+  & {
+    @media (max-width: 300px) {
+      // align-items: unset;
+    }
+  }
+
+  .ant-tabs-tab {
+    text-transform: uppercase;
+  }
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: $red;
+}
+.ant-tabs-tab:hover {
+  color: $red;
+}
+.ant-tabs-ink-bar {
+  background: $red;
+}
