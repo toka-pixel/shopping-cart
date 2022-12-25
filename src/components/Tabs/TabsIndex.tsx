@@ -59,7 +59,7 @@ const TabsIndex = () => {
           ),
           key: id,
           children: (
-            <Products updatedProducts={updatedProducts} category={type} />
+            <Products updatedProducts={updatedProducts}  />
           ),
         };
       })}

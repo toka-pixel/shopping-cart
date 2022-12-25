@@ -4,6 +4,7 @@ import Slider from "../Carousel/Carousel";
 import { getAllProducts } from "../../store/Product/fetchProducts";
 import { useAppDispatch , useAppSelector} from "../../hooks/index";
 import Products from "../Products/Products";
+import ProductsFilter from '../Products/Products-Filter'
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -16,8 +17,8 @@ const Home = () => {
   return (
     <>
       <Slider />
-      <Categories />
-      {/* <Products category={""} updatedProducts={products} /> */}
+      {/* <Categories /> */}
+      <ProductsFilter  updatedProducts={products} />
     </>
   );
 };

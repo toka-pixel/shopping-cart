@@ -1,0 +1,57 @@
+import React from "react";
+import { Product } from "../../types/Product";
+import { useAppSelector } from "../../hooks/index";
+import ProductDetails from "../ProductDetails/Product";
+import { Row, Col } from "antd";
+import Filter from "../Filter/Filter";
+import "./Products.scss";
+
+type IProps = {
+  updatedProducts: any;
+};
+
+const ProductsFilter = (props: IProps) => {
+  const { updatedProducts } = props;
+
+  const { category, minPrice, maxPrice } = useAppSelector(
+    (state) => state.product.filteredData
+  );
+
+  console.log(category);
+
+  return (
+    <div className="container products">
+      <Row>
+        <Col xs={24} sm={5}>
+          <Filter />
+        </Col>
+        <Col xs={1}></Col>
+        <Col xs={24} sm={16}>
+          <Row gutter={0}>
+            {updatedProducts.map((product: Product) => {
+              if (product.category === category) {
+                if (!minPrice && !maxPrice) {
+                  return (
+                    <Col xs={24} sm={8} md={6} key={Math.random()}>
+                      <ProductDetails product={product} />
+                    </Col>
+                  );
+                }
+
+                if (minPrice <= product.price || maxPrice >= product.price) {
+                  return (
+                    <Col xs={24} sm={8} md={6} key={Math.random()}>
+                      <ProductDetails product={product} />
+                    </Col>
+                  );
+                }
+              }
+            })}
+          </Row>
+        </Col>
+      </Row>
+    </div>
+  );
+};
+
+export default ProductsFilter;

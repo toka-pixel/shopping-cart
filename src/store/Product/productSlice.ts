@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "../../types/Product";
 import { getAllProducts } from "./fetchProducts";
+import { useState } from "react";
 
 type ProductState = {
   status: "loading" | "idle" | "failed";
@@ -10,6 +11,13 @@ type ProductState = {
   totalPrice: number;
   cartProducts: Product[];
   totalQuantity: number;
+  filteredData: {
+    category: string;
+  
+    minPrice: number;
+      maxPrice: number;
+    
+  };
 };
 
 const initialState: ProductState = {
@@ -20,6 +28,11 @@ const initialState: ProductState = {
   totalPrice: 0,
   cartProducts: [],
   totalQuantity: 0,
+  filteredData: {
+    category: "",
+    minPrice: 0,
+    maxPrice: 0,
+  },
 };
 
 export const productReducer = createSlice({
@@ -67,6 +80,12 @@ export const productReducer = createSlice({
       state.totalPrice = 0;
       state.totalQuantity = 0;
     },
+
+    changeFilteredData: (state, action: PayloadAction<any>) => {
+      state.filteredData.category = action?.payload?.category;
+      state.filteredData.minPrice = action?.payload?.min;
+      state.filteredData.maxPrice = action?.payload?.max;
+    },
   },
 
   extraReducers: (builder) => {
@@ -76,11 +95,14 @@ export const productReducer = createSlice({
     });
 
     builder.addCase(getAllProducts.fulfilled, (state, { payload }) => {
-      state.productsList.push(...payload);
+      if (state.productsList.length == 0) {
+        state.productsList.push(...payload);
+      }
       state.status = "idle";
       payload.map((product: Product) => {
         if (!state.categories.includes(product.category))
           state.categories.push(product.category);
+        state.filteredData.category = state.categories[0];
       });
     });
 
@@ -91,4 +113,5 @@ export const productReducer = createSlice({
   },
 });
 
-export const { addProduct, removeProduct, clearCart } = productReducer.actions;
+export const { addProduct, removeProduct, clearCart, changeFilteredData } =
+  productReducer.actions;

@@ -12,7 +12,6 @@ export const getAllProducts = createAsyncThunk(
   "products/getAll",
   async () => {
     const res = await getProducts();
-    console.log(res.data)
     return res.data;
   }
 );
