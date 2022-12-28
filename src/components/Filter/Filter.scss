@@ -1,8 +1,27 @@
-.filter{
+@import "../../common/style";
 
-    
+.filter {
+  padding-bottom: 25px;
+  .ant-collapse-content-box {
+    display: flex;
+  }
+
+  // .ant-input-affix-wrapper{
+  //     width: 100px;
+  // }
+  .break {
+    padding: 0 7px;
+    font-weight: 900;
+  }
+  button {
+    margin-left: 10px;
+  }
+  .ant-btn:focus {
+    color: $red;
+    border-color: $red;
+    background: $white;
+  }
 }
 .ant-radio-group {
-    display: inline-grid ;
-    
- }
+  display: inline-grid;
+}

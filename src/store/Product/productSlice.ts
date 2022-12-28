@@ -13,10 +13,8 @@ type ProductState = {
   totalQuantity: number;
   filteredData: {
     category: string;
-  
     minPrice: number;
-      maxPrice: number;
-    
+    maxPrice: number;
   };
 };
 
@@ -83,8 +81,8 @@ export const productReducer = createSlice({
 
     changeFilteredData: (state, action: PayloadAction<any>) => {
       state.filteredData.category = action?.payload?.category;
-      state.filteredData.minPrice = action?.payload?.min;
-      state.filteredData.maxPrice = action?.payload?.max;
+      state.filteredData.minPrice = action?.payload?.minPrice;
+      state.filteredData.maxPrice = action?.payload?.maxPrice;
     },
   },
 

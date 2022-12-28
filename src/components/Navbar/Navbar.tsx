@@ -1,14 +1,15 @@
-
 import { useAppSelector, useAppDispatch } from "../../hooks";
-import { changeStatus } from '../../store/Cart/cartSlice';
+import { changeCartStatus , changeFavoriteStatus } from "../../store/DrawerMenu/DrawerMenu";
 import CartMenu from "../Cart/CartMenu/CartMenu";
+import FavoriteMenu from "../Favorite/FavoriteMenu";
 import "./Navbar.scss";
 
 const Navbar = () => {
-
-
-  const quantity = useAppSelector(state => state.product.totalQuantity);
-  const status = useAppSelector(state => state.cart.status)
+  const quantity = useAppSelector((state) => state.product.totalQuantity);
+  const {cartStatus , favoriteStatus} = useAppSelector((state) => state.drawerMenu);
+  const numOf_Favorites = useAppSelector(
+    (state) => state.favorite.numOf_Favorites
+  );
   const dispatch = useAppDispatch();
 
   return (
@@ -16,17 +17,18 @@ const Navbar = () => {
       <header>
         <p>Online Store</p>
         <div className="options">
-          <i className="fa-regular fa-heart"></i>
-          <label onClick={() => dispatch(changeStatus(true))} >
+          <label  onClick={() => dispatch(changeFavoriteStatus(true))}>
+            <i className="fa-regular fa-heart"></i>
+            <span className="favorite-count">{numOf_Favorites}</span>
+          </label>
+          <label onClick={() => dispatch(changeCartStatus(true))}>
             <i className="fa-solid fa-cart-shopping"></i>
             <span className="product-count">{quantity}</span>
           </label>
         </div>
-
       </header>
-      {
-        status && <CartMenu />
-      }
+      {cartStatus && <CartMenu />}
+      {favoriteStatus && <FavoriteMenu/>}
     </div>
   );
 };

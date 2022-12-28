@@ -7,3 +7,23 @@
 .paddingTop {
   padding-top: 152px;
 }
+
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper:hover {
+  border-color: $gray_3 !important;
+  box-shadow: none !important;
+  border-right-width: 1px;
+  outline: 0;
+}
+.ant-btn:hover {
+  color: $red;
+  border-color: $red;
+  background: $gray_1;
+}
+
+.ant-radio-checked .ant-radio-inner {
+  border-color: $red !important;
+}
+.ant-radio-inner:after {
+  background-color: $red;
+}

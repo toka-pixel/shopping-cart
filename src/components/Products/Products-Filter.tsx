@@ -32,13 +32,28 @@ const ProductsFilter = (props: IProps) => {
               if (product.category === category) {
                 if (!minPrice && !maxPrice) {
                   return (
+                    <Col xs={24} sm={12} md={8} lg={6} key={Math.random()}>
+                      <ProductDetails product={product} />
+                    </Col>
+                  );
+                }
+                 
+                if( !maxPrice && (minPrice <= product.price )){
+                  return (
+                    <Col xs={24} sm={12} md={8} lg={6} key={Math.random()}>
+                      <ProductDetails product={product} />
+                    </Col>
+                  );
+                }
+                  
+                if( !minPrice && (maxPrice >= product.price )){
+                  return (
                     <Col xs={24} sm={8} md={6} key={Math.random()}>
                       <ProductDetails product={product} />
                     </Col>
                   );
                 }
-
-                if (minPrice <= product.price || maxPrice >= product.price) {
+                if (minPrice <= product.price && maxPrice >= product.price) {
                   return (
                     <Col xs={24} sm={8} md={6} key={Math.random()}>
                       <ProductDetails product={product} />

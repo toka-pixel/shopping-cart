@@ -1,22 +1,29 @@
 import React from "react";
 import { useAppSelector, useAppDispatch } from "../../../hooks";
-import { changeStatus } from "../../../store/Cart/cartSlice";
+import { changeCartStatus } from "../../../store/DrawerMenu/DrawerMenu";
 import { Drawer } from "antd";
 import CartProduct from "./CartProduct";
 import ButtonSubmit from "../../shared-components/Button/Button";
+import EmptyMenu from "../../shared-components/EmptyMenu/EmptyMenu";
 import "./CartMenu.scss";
 
 const CartMenu = () => {
-  const { status } = useAppSelector((state) => state.cart);
+  const { cartStatus } = useAppSelector((state) => state.drawerMenu);
   const { totalPrice, cartProducts } = useAppSelector((state) => state.product);
   const dispatch = useAppDispatch();
 
   const onClose = () => {
-    dispatch(changeStatus(false));
+    dispatch(changeCartStatus(false));
   };
   return (
     <div className="CartMenu">
-      <Drawer className="cart" title="My Cart" placement="right" onClose={onClose} open={status}>
+      <Drawer
+        className="cart"
+        title="My Cart"
+        placement="right"
+        onClose={onClose}
+        open={cartStatus}
+      >
         {cartProducts.length > 0 ? (
           <>
             {cartProducts.map((product) => (
@@ -30,29 +37,15 @@ const CartMenu = () => {
             <ButtonSubmit>checkout</ButtonSubmit>
           </>
         ) : (
-          <div className="emptyCart">
-            <div className="emptyItems">
-              <img src="/imgs/emptyCart.png" />
-              <p> Your shopping cart is empty </p>
-              <p> let’s do some shopping </p>
-            </div>
-          </div>
+          <EmptyMenu
+            img={"emptyCart.png"}
+            text_1=" Your shopping cart is empty"
+            text_2="let’s do some shopping"
+          />
         )}
       </Drawer>
     </div>
   );
-  //  status ? (
-  //   <div className="CartMenu">
-  //     <div className="drawer__overlay"></div>
-  //     <div className={status ? "openMenu" : "closeMenu"}>
-  //     <div className={`menu`}>
-  //       <span onClick={closeMenu}>
-  //         <i className="fa-solid fa-circle-xmark"></i>
-  //       </span>
-  //     </div>
-  //     </div>
-  //   </div>
-  // ) : null;
 };
 
 export default CartMenu;

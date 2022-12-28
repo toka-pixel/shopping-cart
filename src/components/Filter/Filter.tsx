@@ -12,24 +12,31 @@ const Filter = () => {
 
   const categories = useAppSelector((state) => state.product.categories);
 
-  const {filteredData} = useAppSelector(
-    (state) => state.product
-  );
+  const { filteredData } = useAppSelector((state) => state.product);
 
   const onChange = (e: RadioChangeEvent) => {
-    dispatch(changeFilteredData({...filteredData, category: e.target.value }));
+    dispatch(changeFilteredData({ ...filteredData, category: e.target.value }));
   };
 
+
+
   const formReducer = (state: any, event: any) => {
-    if(event.target.name === 'category'){
+    if (event.target.name === "category") {
       dispatch(
-        changeFilteredData({ [event.target.name]: event.target.value ,minPrice:null ,maxPrice:null })
+        changeFilteredData({
+          [event.target.name]: event.target.value,
+          minPrice: null,
+          maxPrice: null,
+        })
       );
-    }else{
-    dispatch(
-      changeFilteredData({ ...filteredData, [event.target.name]: event.target.value })
-    )
-  };
+    } else {
+      dispatch(
+        changeFilteredData({
+          ...filteredData,
+          [event.target.name]: event.target.value,
+        })
+      );
+    }
     return {
       ...state,
       [event.target.name]: event.target.value,
@@ -38,57 +45,74 @@ const Filter = () => {
 
   const [formData, setFormData] = useReducer(formReducer, {});
 
+  const onFinish = (values: any) => {
+    console.log(values.min);
+    dispatch(
+      changeFilteredData({
+        ...filteredData,
+        minPrice: parseInt(values?.min),
+        maxPrice: parseInt(values?.max),
+      })
+    );
+
+  };
+
+
   return (
     <div className="filter">
       <Collapse defaultActiveKey={["1"]}>
         <Panel header="Categories" key="1">
-          <Radio.Group name="category" onChange={setFormData}  value={filteredData.category }>
+          <Radio.Group
+            name="category"
+            onChange={setFormData}
+            value={filteredData.category}
+          >
             {categories.map((category, i) => (
               <Radio value={category}>{category}</Radio>
             ))}
           </Radio.Group>
         </Panel>
         <Panel header="Price" key="2">
-      
+          <Form onFinish={onFinish}>
             <Form.Item
+              name="min"
               rules={[
-                {
-                  required: true,
-                  message: "enter value",
-                },
                 {
                   validator(_: any, value: string) {
                     const numberRegex = /^\d+$/;
                     if (!numberRegex.test(value)) {
                       return Promise.reject(" accept only  numbers");
+                    } else {
+                      return Promise.resolve();
                     }
                   },
                 },
-                {
-                   pattern: new RegExp("^[0-9]*$"),
-              message: "Wrong format!"
-                }
               ]}
             >
               <Input
                 prefix="$"
-                name="min"
-                onChange={setFormData}
+                // onChange={setFormData}
                 placeholder={"29"}
-                pattern={"^[0-9]*$"}
+                //pattern={"^[0-9]*$"}
               />
             </Form.Item>
-        
-          -
-          <Input
-            prefix="$"
-            name="max"
-            onChange={setFormData}
-            placeholder={"50"}
-          />
-          <Button disabled={formData.min || formData.max ? false : true}>
-            <i className="fa-solid fa-angles-right"></i>
-          </Button>
+            <label className="break">-</label>
+            <Form.Item name="max">
+              <Input
+                prefix="$"
+                //   onChange={setFormData}
+                placeholder={"50"}
+              />
+            </Form.Item>
+            <Form.Item>
+              <Button
+                htmlType="submit"
+                //  disabled={formData.min || formData.max ? false : true}
+              >
+                <i className="fa-solid fa-angles-right"></i>
+              </Button>
+            </Form.Item>
+          </Form>
         </Panel>
       </Collapse>
     </div>

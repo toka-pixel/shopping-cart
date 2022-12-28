@@ -10,9 +10,9 @@
     z-index: 100;
     -webkit-backdrop-filter: blur(1px);
     backdrop-filter: blur(1px);
-    box-shadow: red;
+    box-shadow: $red;
   }
-  //left: -368px;
+
   .menu {
     width: 367px;
     max-width: 90%;
@@ -22,19 +22,10 @@
     bottom: 0;
     z-index: 200;
     transition: left 0.4s, right 0.4s;
-    // opacity: 0;
-    // visibility: hidden;
-    // transition: all 0.3s ease-in-out;
+
   }
 }
-.openMenu {
-  right: 0;
-  left: auto;
-}
-.closeMenu {
-  right: -368px;
-  left: auto;
-}
+
 .cart {
   .custom-button button {
     width: 100%;
@@ -84,24 +75,3 @@
   }
 }
 
-.emptyCart {
-  flex: 1;
-  // flex-direction: column;
-  @include flex($display: flex, $justify: center, $align: center);
-  text-align: center;
-  .emptyItems {
-    img {
-      width: 70px;
-      height: 70px;
-      margin-bottom: 15px;
-    }
-    p:nth-of-type(1) {
-      font-weight: 700;
-      font-size: 17px;
-    }
-    p::nth-of-type(2) {
-      margin-top: -8px;
-      font-size: 15px;
-    }
-  }
-}

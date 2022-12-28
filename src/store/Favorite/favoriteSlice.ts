@@ -3,10 +3,12 @@ import { Product } from "../../types/Product";
 
 type FavoriteState = {
   favoriteList: Product[];
+  numOf_Favorites: number;
 };
 
 const initialState: FavoriteState = {
   favoriteList: [],
+  numOf_Favorites:0
 };
 
 export const favoriteReducer = createSlice({
@@ -22,8 +24,10 @@ export const favoriteReducer = createSlice({
 
       if (index >= 0) {
         state.favoriteList.splice(index, 1);
+        state.numOf_Favorites--
       } else {
         state.favoriteList.push({ ...action.payload });
+        state.numOf_Favorites++
       }
     },
   },
