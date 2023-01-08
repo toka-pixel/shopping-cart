@@ -8,7 +8,7 @@ import { Drawer } from "antd";
 
 const FavoriteMenu = () => {
   const { favoriteStatus } = useAppSelector((state) => state.drawerMenu);
-  const { favoriteList, numOf_Favorites } = useAppSelector(
+  const { favoriteList } = useAppSelector(
     (state) => state.favorite
   );
   const dispatch = useAppDispatch();
@@ -16,6 +16,7 @@ const FavoriteMenu = () => {
   const onClose = () => {
     dispatch(changeFavoriteStatus(false));
   };
+ 
   return (
     <div className="favoriteMenu">
       <Drawer

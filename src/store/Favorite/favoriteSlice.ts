@@ -4,11 +4,13 @@ import { Product } from "../../types/Product";
 type FavoriteState = {
   favoriteList: Product[];
   numOf_Favorites: number;
+
 };
 
 const initialState: FavoriteState = {
   favoriteList: [],
-  numOf_Favorites:0
+  numOf_Favorites: 0,
+
 };
 
 export const favoriteReducer = createSlice({
@@ -23,14 +25,30 @@ export const favoriteReducer = createSlice({
       );
 
       if (index >= 0) {
+        state.favoriteList[index].favorite=false
+        console.log(  state.favoriteList[index].favorite)
         state.favoriteList.splice(index, 1);
-        state.numOf_Favorites--
+        state.numOf_Favorites--;
+    
       } else {
-        state.favoriteList.push({ ...action.payload });
-        state.numOf_Favorites++
+        
+        state.favoriteList.push({ ...action.payload , favorite:true});
+    
+        state.numOf_Favorites++;
+       
       }
+    },
+
+    exitFavoriteItem: (state, action: PayloadAction<Product>) => {
+      // const { id } = action.payload;
+
+      // const index = state.favoriteList.findIndex(
+      //   (item: Product) => item.id === id
+      // );
+ 
+      // index >= 0 ? true : false;
     },
   },
 });
 
-export const { favoriteItem } = favoriteReducer.actions;
+export const { favoriteItem  } = favoriteReducer.actions;

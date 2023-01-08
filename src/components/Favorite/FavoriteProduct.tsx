@@ -1,8 +1,9 @@
 import React from "react";
 import { Product } from "../../types/Product";
 import { useAppDispatch } from "../../hooks";
+import { favoriteItem } from "../../store/Favorite/favoriteSlice";
 import { Row, Col } from "antd";
-//import "./CartMenu.scss";
+import "./FavoriteProduct.scss";
 
 type IProps = {
   product: Product;
@@ -18,14 +19,19 @@ const FavoriteProduct = (props: IProps) => {
           <img src={product.image} alt="product image" />
         </Col>
         <Col span={12} className="second-col-product">
-          <p>{product.category}</p>
-          <br/>
+          <p className="category">{product.category}</p>
+
           <p className="title">{product.title}</p>
         </Col>
         <Col span={7} className="third-product price">
-          <p>${product.price}</p>
-        
-          <i className="fa-solid fa-heart"></i>
+          <p className="price">${product.price}</p>
+          <label
+            onClick={() => {
+              dispatch(favoriteItem(product));
+            }}
+          >
+            <i className="fa-solid fa-heart"></i>
+          </label>
         </Col>
       </Row>
     </div>

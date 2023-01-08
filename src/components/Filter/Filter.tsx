@@ -88,6 +88,7 @@ const Filter = () => {
                   },
                 },
               ]}
+              className={'mb-0'}
             >
               <Input
                 prefix="$"

@@ -17,7 +17,7 @@ const ProductsFilter = (props: IProps) => {
     (state) => state.product.filteredData
   );
 
-  console.log(category);
+
 
   return (
     <div className="container products">

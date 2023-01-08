@@ -9,5 +9,6 @@ export type Product = {
     rate: number;
   };
   title: string;
-  quantity:number
+  quantity:number,
+  favorite:boolean
 };

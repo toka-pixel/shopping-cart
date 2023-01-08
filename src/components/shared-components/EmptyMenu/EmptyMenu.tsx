@@ -6,7 +6,7 @@ type IProps = {
   text_1?: string;
   text_2?: string;
 };
-// emptyCart.png
+
 const EmptyMenu = (props: IProps) => {
   const { img, text_1, text_2 } = props;
   return (

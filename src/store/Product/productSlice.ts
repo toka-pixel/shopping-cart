@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "../../types/Product";
 import { getAllProducts } from "./fetchProducts";
-import { useState } from "react";
+
 
 type ProductState = {
   status: "loading" | "idle" | "failed";

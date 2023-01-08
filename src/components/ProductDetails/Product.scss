@@ -5,7 +5,7 @@
   transition: all 0.3s ease-in-out;
   position: relative;
   text-align: -webkit-center;
-  img {
+  .productImg {
     width: 120px;
     height: 130px;
     margin-bottom: 42px;
@@ -44,6 +44,9 @@
     visibility: hidden;
     transition: all 0.3s ease-in-out;
     transform: translate(0px, 0px);
+    img{
+      width: 14px;
+    }
   }
   .like:hover {
     color: $red;
