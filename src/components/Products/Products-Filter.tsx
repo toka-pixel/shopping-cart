@@ -22,7 +22,7 @@ const ProductsFilter = (props: IProps) => {
   return (
     <div className="container products">
       <Row>
-        <Col xs={24} sm={5}>
+        <Col xs={24} sm={6} >
           <Filter />
         </Col>
         <Col xs={1}></Col>

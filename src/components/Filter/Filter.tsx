@@ -93,7 +93,7 @@ const Filter = () => {
               <Input
                 prefix="$"
                 // onChange={setFormData}
-                placeholder={"29"}
+                placeholder={"min price : 29"}
                 //pattern={"^[0-9]*$"}
               />
             </Form.Item>
@@ -102,7 +102,7 @@ const Filter = () => {
               <Input
                 prefix="$"
                 //   onChange={setFormData}
-                placeholder={"50"}
+                placeholder={"max price : 50"}
               />
             </Form.Item>
             <Form.Item>

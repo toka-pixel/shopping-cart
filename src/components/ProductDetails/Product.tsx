@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Product } from "../../types/Product";
+import {message} from 'antd';
 import ButtonSubmit from "../shared-components/Button/Button";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { addProduct } from "../../store/Product/productSlice";
@@ -29,6 +30,10 @@ const ProductDetails = (props: IProps) => {
     checkFavorite(product.id) >= 0 ? setFavItem(true) : setFavItem(false);
     console.log(favItem)
   }
+  const addToCart=()=>{
+    dispatch(addProduct(product));
+    message.success('add product to cart successfully')
+  }
   return (
     <>
       <div className="product">
@@ -43,7 +48,7 @@ const ProductDetails = (props: IProps) => {
         </Link>
         <div
           className="add-to-cart"
-          onClick={() => dispatch(addProduct(product))}
+          onClick={addToCart}
         >
           <ButtonSubmit> add to cart</ButtonSubmit>
         </div>
@@ -53,26 +58,12 @@ const ProductDetails = (props: IProps) => {
             handleFavorite()
           }}
         >
-          {/* {checkFavorite(product.id) >=0 ? (
-          setFavItem(true)
-          ) : (
-            setFavItem(false)
-          )} */}
+      
           {
             favItem ?  <img src='/imgs/save.svg' />: <img src='/imgs/not-save.svg' />
           }
           
-          {/* {favoriteList.map((item: Product) => {
-            if (item.id === product.id)
-              return <i className="fa-solid fa-heart"></i>;
-
-            return <i className="fa-regular fa-heart"></i>;
-          })} */}
-          {/* {product?.favorite ? (
-            <i className="fa-solid fa-heart"></i>
-          ) : (
-            <i className="fa-regular fa-heart"></i>
-          )} */}
+     
         </span>
       </div>
     </>
