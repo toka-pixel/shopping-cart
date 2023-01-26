@@ -1,20 +1,58 @@
-@import './common/_style.scss';
+@import "./common/_style.scss";
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  background-color: $gray_1;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-.container{
+.container {
   padding: 0 40px;
+}
+.light {
+  background: $white;
+  color: $black;
+  transition: 250ms ease-in;
+  a,
+  a:hover {
+    color: $black;
+  }
+}
+
+.dark {
+  background: $black_1;
+  color: $white;
+  transition: 250ms ease-in;
+  a,
+  a:hover {
+    color: $white;
+  }
+}
+.headerFooterDark {
+  background-color: $black_2;
+}
+.headerFooterLight {
+  background-color: $gray_4;
+}
+
+.darkMenu {
+  svg {
+    fill: $white;
+  }
+  .ant-drawer-title {
+    color: $white;
+  }
+  .ant-drawer-wrapper-body {
+    background: $black_2;
+  }
+}
+
+.pt-60{
+padding-top: 60px;
+}
+.pb-60{
+  padding-bottom: 60px;
 }

@@ -7,14 +7,15 @@ import { addProduct, removeProduct } from "../../../store/Product/productSlice";
 
 type IProps = {
   product: Product;
+  className: string
 };
 
 const CartProduct = (props: IProps) => {
-  const { product } = props;
+  const { product,className } = props;
   const dispatch = useAppDispatch();
   return (
-    <div className="cartProducts">
-      <Row className="cartProduct">
+    <div className={`cartProducts `}>
+      <Row className={`cartProduct ${className}`}>
         <Col span={5} className="col-product">
           <img src={product.image} alt='product image' />
         </Col>

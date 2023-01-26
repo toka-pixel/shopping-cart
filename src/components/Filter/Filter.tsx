@@ -11,14 +11,13 @@ const Filter = () => {
   const dispatch = useAppDispatch();
 
   const categories = useAppSelector((state) => state.product.categories);
+  const {isDarK}=useAppSelector(state=>state.theme)
 
   const { filteredData } = useAppSelector((state) => state.product);
 
   const onChange = (e: RadioChangeEvent) => {
     dispatch(changeFilteredData({ ...filteredData, category: e.target.value }));
   };
-
-
 
   const formReducer = (state: any, event: any) => {
     if (event.target.name === "category") {
@@ -54,12 +53,10 @@ const Filter = () => {
         maxPrice: parseInt(values?.max),
       })
     );
-
   };
 
-
   return (
-    <div className="filter">
+    <div className={`filter ${ isDarK ? 'darkCollapse' : ''}`}>
       <Collapse defaultActiveKey={["1"]}>
         <Panel header="Categories" key="1">
           <Radio.Group
@@ -88,7 +85,7 @@ const Filter = () => {
                   },
                 },
               ]}
-              className={'mb-0'}
+              className={"mb-0"}
             >
               <Input
                 prefix="$"

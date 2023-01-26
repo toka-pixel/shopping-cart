@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAppDispatch, useAppSelector } from '../../../hooks/index';
 import './CenterText.scss';
 
 type IProps={
@@ -6,11 +7,14 @@ type IProps={
 }
 
 const CenterText=(props:IProps)=>{
-    const {text}=props
+
+    const {text}=props;
+
+    const { isDarK } = useAppSelector((state) => state.theme);
 
     return(
         <div className='centerText'>
-         <p className='text'>{text}</p>
+         <p className={`text ${isDarK  ? 'dark' :'light'}`}>{text}</p>
          <p className='line'></p>
         </div>
     )

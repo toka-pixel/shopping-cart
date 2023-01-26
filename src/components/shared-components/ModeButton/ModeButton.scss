@@ -1,0 +1,32 @@
+@import "../../../common/style";
+
+.ant-switch {
+  background-color: $black_1 ;
+  margin-top: -35px !important;
+  width: 71px !important;
+  height: 29px !important;
+}
+
+.ant-switch-handle {
+  top: 5px !important;
+}
+
+.ant-switch-checked .ant-switch-inner {
+  margin: 0 25px 0 0px !important;
+}
+
+.darkSwitch{
+    background-color: $black_1 !important;
+    animation: App-logo-spin infinite 20s linear;
+}
+.lightSwitch{
+    background-color: $sky !important;
+    animation: App-logo-spin infinite 20s linear;
+}
+.modeImg {
+  height: 26px;
+  width: 26px;
+  cursor: pointer;
+  margin-top: 6px;
+  animation: App-logo-spin infinite 20s linear;
+}

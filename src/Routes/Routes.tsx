@@ -3,6 +3,7 @@ import Loading from "../components/shared-components/Loading/Loading";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar";
 const Home = React.lazy(() => import("../components/Home/Home"));
+
 const Product = React.lazy(
   () => import("../components/ViewOneProduct/ViewOneProduct")
 );
@@ -36,6 +37,7 @@ const RoutesApp = () => {
 
           {/* </Suspense> */}
         </Routes>
+    
       </Router>
     </>
   );

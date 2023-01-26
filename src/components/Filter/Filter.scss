@@ -1,15 +1,31 @@
 @import "../../common/style";
+.darkCollapse {
+  .ant-collapse-item {
+    background-color: $black_2 !important;
+    .ant-collapse-header {
+      color: $white;
+    }
+    .ant-collapse-content-box {
+      background-color: $black_1 !important;
+      .ant-radio-wrapper {
+        color: $white;
+      }
+    }
+  }
+}
 
 .filter {
   padding-bottom: 25px;
-  .ant-collapse-content-box {
-    display: flex;
+  @media (max-width: 832px){
+    .ant-collapse-content-box {
+      display: flex;
+    }
   }
-
-  // .ant-input-affix-wrapper{
-  //     width: 100px;
-  // }
-  .mb-0{
+ 
+  .ant-collapse {
+    border-radius: 10px;
+  }
+  .mb-0 {
     margin-bottom: 0;
   }
   .break {
@@ -17,7 +33,7 @@
     font-weight: 900;
   }
   button {
-    margin-left: 10px;
+   width: 100%;
   }
   .ant-btn:focus {
     color: $red;

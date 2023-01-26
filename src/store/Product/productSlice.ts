@@ -62,7 +62,7 @@ export const productReducer = createSlice({
         state.totalQuantity--;
         state.totalPrice = state.totalPrice - action.payload.price;
       }
-      if (state.cartProducts[index].quantity >= 1) {
+      if (state.cartProducts[index].quantity > 1) {
         state.cartProducts[index].quantity--;
 
         return;

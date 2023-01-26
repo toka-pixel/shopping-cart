@@ -12,6 +12,7 @@ const FavoriteMenu = () => {
     (state) => state.favorite
   );
   const dispatch = useAppDispatch();
+  const { isDarK } = useAppSelector((state) => state.theme);
 
   const onClose = () => {
     dispatch(changeFavoriteStatus(false));
@@ -20,12 +21,14 @@ const FavoriteMenu = () => {
   return (
     <div className="favoriteMenu">
       <Drawer
-        className="favorite"
+      
+      className={isDarK ? "darkMenu" : ""}
         title="Favorite Items"
         placement="right"
         onClose={onClose}
         open={favoriteStatus}
       >
+          <div className={isDarK ? "dark" : "light"}>
         {favoriteList.length > 0 ? (
           <>
             {favoriteList.map((product) => (
@@ -39,6 +42,7 @@ const FavoriteMenu = () => {
             text_2="Mark your favorite items and always have theme here"
           />
         )}
+        </div>
       </Drawer>
     </div>
   );
