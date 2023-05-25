@@ -11,7 +11,7 @@ const EmptyMenu = (props: IProps) => {
   const { img, text_1, text_2 } = props;
   return (
     <div className="emptyMenu">
-      <div className="emptyItems">
+      <div className="emptyItems" title="empty Menu">
         <img src={`/imgs/${img}`} />
         <p>{text_1}</p>
         <p> {text_2}</p>

@@ -46,7 +46,7 @@ const News = () => {
             />
             <div className="overflow-content">
               <p className="trend">Trend Of Year</p>
-              <p>10 Best Apps For Fashion Girls trend of year</p>
+              <p> Fashionista is a fashion news website that covers the business </p>
               <a className="hover" href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.whowhatwear.com%2Fcute-winter-work-outfits&psig=AOvVaw2xGJxKLeOj9qMDV584dhfX&ust=1674690958312000&source=images&cd=vfe&ved=0CBEQjhxqFwoTCPCB54-04fwCFQAAAAAdAAAAABAx">
                 View more
               </a>

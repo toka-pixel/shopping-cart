@@ -8,7 +8,7 @@ const Footer = () => {
 
   return (
     <div className={`footer ${isDarK ? 'headerFooterDark' : 'headerFooterLight'}`}>
-     @  {new Date().getFullYear()}   all rights reserved
+     @  2022  all rights reserved
     
     </div>
   );

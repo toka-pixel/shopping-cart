@@ -24,7 +24,7 @@ function App() {
   return (
     <div className={`${isDarK ? "dark" : "light"} h-100`}>
       <title>online store</title>
-      <meta name="description" content="" />
+      <meta name="description" content="online store" />
       <RoutesApp />
     </div>
   );

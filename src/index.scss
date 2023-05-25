@@ -11,6 +11,7 @@ body {
 
 .container {
   padding: 0 40px;
+  min-height: calc(100vh - 47px - 100px);
 }
 .light {
   background: $white;

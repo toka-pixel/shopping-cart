@@ -8,6 +8,7 @@ import { StarOutlined, StarFilled } from "@ant-design/icons";
 import { useAppDispatch } from "../../hooks";
 import { addProduct } from "../../store/Product/productSlice";
 import Loading from "../shared-components/Loading/Loading";
+import ProductImage from "../shared-components/ProductImage/Index";
 import "./ViewOneProduct.scss";
 const ViewOneProduct = (props: any) => {
   let { id } = useParams();
@@ -41,6 +42,7 @@ const ViewOneProduct = (props: any) => {
       {product ? (
         <Row className="oneProduct Row">
           <Col xs={24} sm={11} className="styleImg">
+          {/* <ProductImage imageUrl={product.image} /> */}
             <img src={product?.image} alt="product image" />
           </Col>
           <Col xs={24} sm={11}>

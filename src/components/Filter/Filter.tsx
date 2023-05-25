@@ -45,7 +45,6 @@ const Filter = () => {
   const [formData, setFormData] = useReducer(formReducer, {});
 
   const onFinish = (values: any) => {
-    console.log(values.min);
     dispatch(
       changeFilteredData({
         ...filteredData,

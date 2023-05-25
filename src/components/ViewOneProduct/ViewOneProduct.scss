@@ -8,6 +8,7 @@
   width: 70%;
   padding: 30px 20px;
   border-radius: 15px;
+  margin-bottom: 37px;
   & {
     @media (max-width: 900px) {
       width: auto;
@@ -25,25 +26,24 @@
     text-align: center;
     margin-bottom: 34px;
     img {
-      width: 40%;
+      width: 40% !important;
       max-width: 40%;
-      height: 230px;
+      height: 230px !important;
     }
   }
-  .description{
+  .description {
     padding-top: 10px;
   }
-  .title{
+  .title {
     font-size: 16px;
     font-weight: bold;
   }
-  .price{
+  .price {
     font-size: 22px;
   }
-  .category{
+  .category {
     font-size: 16px;
     text-transform: capitalize;
     font-weight: 600;
   }
 }
-

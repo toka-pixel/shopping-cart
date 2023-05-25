@@ -17,9 +17,9 @@ const ModeButton = () => {
   return (
     <>
       {isDarK ? (
-        <img className="modeImg" onClick={handleMode} src="/imgs/night-mode.png" />
+        <img className="modeImg" title='night-mode' onClick={handleMode} src="/imgs/night-mode.png" />
       ) : (
-        <img className="modeImg" onClick={handleMode} src="/imgs/light-mode.png" />
+        <img className="modeImg" title='light-mode' onClick={handleMode} src="/imgs/light-mode.png" />
       )}
       {/* <Switch
       checkedChildren={<img src="/imgs/light-mode.png" />}

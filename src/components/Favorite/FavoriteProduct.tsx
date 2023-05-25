@@ -12,6 +12,13 @@ type IProps = {
 const FavoriteProduct = (props: IProps) => {
   const { product } = props;
   const dispatch = useAppDispatch();
+
+  const handleFavoriteItem = () => {
+    dispatch(favoriteItem(product));
+ 
+   
+    
+  };
   return (
     <div className="cartProducts">
       <Row className="cartProduct">
@@ -25,11 +32,7 @@ const FavoriteProduct = (props: IProps) => {
         </Col>
         <Col span={7} className="third-product price">
           <p className="price">${product.price}</p>
-          <label
-            onClick={() => {
-              dispatch(favoriteItem(product));
-            }}
-          >
+          <label onClick={handleFavoriteItem}>
             <i className="fa-solid fa-heart"></i>
           </label>
         </Col>

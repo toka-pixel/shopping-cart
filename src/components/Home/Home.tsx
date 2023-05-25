@@ -23,10 +23,10 @@ const Home = () => {
       <Slider />
       {/* <Categories /> */}
 
-        <ProductsFilter updatedProducts={products} />
-         <WomensCollection />   
-         <News />
-      <Footer />
+      <ProductsFilter products={products} />
+      <WomensCollection />
+      <News />
+      {/* <Footer /> */}
     </>
   );
 };
