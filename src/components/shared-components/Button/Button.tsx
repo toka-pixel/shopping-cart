@@ -4,13 +4,14 @@ import "./Button.scss";
 
 type IProps = {
   children: string;
+  onClick?:Function  ,
 };
 const ButtonSubmit = (props: IProps) => {
-  const { children } = props;
+  const { children , onClick} = props;
 
   return (
     <div className="custom-button">
-      <Button className="">{children}</Button>
+      <Button className="" htmlType="submit" onClick={onClick ?()=>onClick() : ()=>{}}>{children}</Button>
     </div>
   );
 };

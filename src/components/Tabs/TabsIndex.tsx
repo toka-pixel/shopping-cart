@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Tabs } from "antd";
 import { useAppSelector } from "../../hooks/index";
-import Products from "../Products/Products";
+import Products from "../SectionsHome/Products/Products";
 import { Product } from "../../types/Product";
 import "./TabsIndex.scss";
 
@@ -14,55 +14,55 @@ const TabsIndex = () => {
   const products = useAppSelector((state) => state.product.productsList);
 
   useEffect(() => {
-    setUpdatedProducts([]);
-    setUniqueIds([]);
-    setUpdatedProducts(
-      products.filter((product: Product) =>{ 
-       if( product.category === type){
-        const isDuplicate = uniqueIds.includes(product.id);
+    // setUpdatedProducts([]);
+    // setUniqueIds([]);
+    // setUpdatedProducts(
+    //   products.filter((product: Product) =>{ 
+    //    if( product.category === type){
+    //     const isDuplicate = uniqueIds.includes(product.id);
 
-        if (!isDuplicate) {
+    //     if (!isDuplicate) {
 
-         uniqueIds.push(product.id)
+    //      uniqueIds.push(product.id)
     
-          return true;
-        }
+    //       return true;
+    //     }
 
-        return false;
-       }
-      })
-    );
+    //     return false;
+    //    }
+    //   })
+    // );
   }, [type]);
 
  
   useEffect(() => {
     if (categories) {
-      setType(categories[1]);
+     // setType(categories[1]);
     }
   }, []);
 
   return (
     <Tabs
       defaultActiveKey={type}
-      items={categories.map((category, i) => {
-        const id = String(i + 1);
+      // items={categories.map((category, i) => {
+      //   const id = String(i + 1);
 
-        return {
-          label: (
-            <span
-              onClick={() => {
-                setType(category);
-              }}
-            >
-              {category}
-            </span>
-          ),
-          key: id,
-          children: (
-            <Products updatedProducts={updatedProducts}  />
-          ),
-        };
-      })}
+      //   return {
+      //     label: (
+      //       <span
+      //         onClick={() => {
+      //           setType(category);
+      //         }}
+      //       >
+      //         {category}
+      //       </span>
+      //     ),
+      //     key: id,
+      //     children: (
+      //       <Products updatedProducts={updatedProducts}  />
+      //     ),
+      //   };
+      // })}
     />
   );
 };

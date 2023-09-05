@@ -1,17 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getProducts } from "../../services/Product";
-import { Product } from "../../types/Product";
 
 
-// type FetchProductsError = {
-//   message: string;
-// };
+
 
 
 export const getAllProducts = createAsyncThunk(
   "products/getAll",
   async () => {
     const res = await getProducts();
+    console.log(res.data)
     return res.data;
   }
 );

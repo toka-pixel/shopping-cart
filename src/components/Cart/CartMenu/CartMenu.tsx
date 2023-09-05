@@ -1,10 +1,10 @@
-import React from "react";
 import { useAppSelector, useAppDispatch } from "../../../hooks";
 import { changeCartStatus } from "../../../store/DrawerMenu/DrawerMenu";
 import { Drawer } from "antd";
-import CartProduct from "./CartProduct";
+import CartProduct from "../../shared-components/CartProduct/CartProduct";
 import ButtonSubmit from "../../shared-components/Button/Button";
 import EmptyMenu from "../../shared-components/EmptyMenu/EmptyMenu";
+import { useNavigate } from "react-router-dom";
 import "./CartMenu.scss";
 
 const CartMenu = () => {
@@ -13,9 +13,16 @@ const CartMenu = () => {
   const { isDarK } = useAppSelector((state) => state.theme);
   const dispatch = useAppDispatch();
 
+  const navigate = useNavigate();
+
   const onClose = () => {
     dispatch(changeCartStatus(false));
   };
+
+  const handleCheckout = () => {
+    navigate("/checkout");
+  };
+
   return (
     <div className="CartMenu">
       <Drawer
@@ -29,14 +36,18 @@ const CartMenu = () => {
           {cartProducts.length > 0 ? (
             <>
               {cartProducts.map((product) => (
-                <CartProduct className={isDarK ? "dark" : "light"} key={product.id} product={product} />
+                <CartProduct
+                  className={""}
+                  key={product.id}
+                  product={product}
+                />
               ))}
 
               <div className="totalPrice">
                 <label>Total</label>
                 <label>${totalPrice.toFixed(2)}</label>
               </div>
-              <ButtonSubmit>checkout</ButtonSubmit>
+              <ButtonSubmit onClick={handleCheckout}>checkout</ButtonSubmit>
             </>
           ) : (
             <EmptyMenu

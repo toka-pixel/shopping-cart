@@ -1,30 +1,6 @@
 @import "../../../common/style";
 
-.CartMenu {
-  .drawer__overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    -webkit-backdrop-filter: blur(1px);
-    backdrop-filter: blur(1px);
-    box-shadow: $red;
-  }
 
-  .menu {
-    width: 367px;
-    max-width: 90%;
-    background: $white;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    z-index: 200;
-    transition: left 0.4s, right 0.4s;
-
-  }
-}
 
 .cart {
   .custom-button button {
@@ -32,37 +8,7 @@
     margin-top: 25px;
   }
 }
-.cartProducts {
-  .cartProduct {
-    box-shadow: $boxShadow;
-    border-radius: 8px;
-    padding: 16px;
-    padding-bottom: 0;
-    margin-bottom: 10px;
-    @include text-overflow;
-  
-    img {
-      width: 45px;
-      height: 45px;
-    }
-    .title {
-      @include text-overflow;
-      font-size: 13px;
-      width: 146px;
-    }
-    .quantity {
-      padding: 0 12px;
-    }
-    svg {
-      font-size: 15px;
-      color: $green;
-      cursor: pointer;
-    }
-    .price {
-      text-align: end;
-    }
-  }
-}
+
 .totalPrice {
   @include flex($display: flex, $justify: space-between);
   padding-top: 18px;
@@ -74,4 +20,3 @@
     font-weight: 700;
   }
 }
-

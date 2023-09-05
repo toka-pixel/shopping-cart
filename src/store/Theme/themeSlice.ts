@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 type ThemeState = {
   isDarK: boolean;
   darkColor: string;
+  darkColor_2:string,
   lightColor: string;
 };
 const getDefaultTheme = () => {
@@ -16,6 +17,7 @@ const getDefaultTheme = () => {
 const initialState: ThemeState = {
   isDarK: getDefaultTheme(),
   darkColor: "#2c2b2b",
+  darkColor_2:'#232323',
   lightColor: "#fff",
 };
 

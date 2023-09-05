@@ -2,35 +2,34 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "../../types/Product";
 import { getAllProducts } from "./fetchProducts";
 
+type categoryObj = Record<string, string[]>;
+type productsObj = {
+  limit: number;
+  products: Product[];
+  skip: number;
+  total: number;
+};
 
 type ProductState = {
   status: "loading" | "idle" | "failed";
   error: string | null;
-  productsList: Product[];
-  categories: string[];
+  productsList: productsObj;
+  categories: categoryObj;
   totalPrice: number;
+  min_max_price: { min: number; max: number };
   cartProducts: Product[];
   totalQuantity: number;
-  filteredData: {
-    category: string;
-    minPrice: number;
-    maxPrice: number;
-  };
 };
 
 const initialState: ProductState = {
-  productsList: [],
+  productsList: {} as productsObj,
   error: null,
   status: "idle",
-  categories: [],
+  categories: {},
   totalPrice: 0,
+  min_max_price: { min: 0, max: 0 },
   cartProducts: [],
   totalQuantity: 0,
-  filteredData: {
-    category: "",
-    minPrice: 0,
-    maxPrice: 0,
-  },
 };
 
 export const productReducer = createSlice({
@@ -38,6 +37,38 @@ export const productReducer = createSlice({
   initialState,
 
   reducers: {
+    allProducts: (state, action: PayloadAction<any>) => {
+      state.productsList = action.payload;
+
+      action.payload.products.map((product: Product) => {
+        if (!state.categories[product?.category]) {
+          state.categories[product?.category] = [];
+        }
+        const element = state.categories[product?.category].includes(
+          product.brand
+        );
+        if (!element) {
+          state.categories[product?.category].push(product.brand);
+        }
+      });
+    },
+
+    changeCategories: (state, action: PayloadAction<string[]>) => {
+      action.payload.map((item: string) => {
+        if (!state.categories[item]) {
+          state.categories[item] = [];
+        }
+      });
+    },
+
+    changeMinMaxPrice: (
+      state,
+      action: PayloadAction<{ min: number; max: number }>
+    ) => {
+
+      state.min_max_price = action.payload;
+    },
+
     addProduct: (state, action: PayloadAction<Product>) => {
       const { id } = action.payload;
 
@@ -73,43 +104,33 @@ export const productReducer = createSlice({
       }
     },
 
+    clearProduct: (state, action: PayloadAction<Product>) => {
+      const index = state.cartProducts.findIndex(
+        (item: Product) => item.id === action.payload.id
+      );
+      if (state?.totalQuantity > 0 && index >= 0) {
+        state.totalQuantity =
+          state.totalQuantity - state?.cartProducts[index]?.quantity;
+
+        state.cartProducts = state.cartProducts.filter(
+          (product: Product) => product.id !== action.payload.id
+        );
+      }
+    },
     clearCart: (state) => {
       state.cartProducts = [];
       state.totalPrice = 0;
       state.totalQuantity = 0;
     },
-
-    changeFilteredData: (state, action: PayloadAction<any>) => {
-      state.filteredData.category = action?.payload?.category;
-      state.filteredData.minPrice = action?.payload?.minPrice;
-      state.filteredData.maxPrice = action?.payload?.maxPrice;
-    },
-  },
-
-  extraReducers: (builder) => {
-    builder.addCase(getAllProducts.pending, (state) => {
-      state.status = "loading";
-      state.error = null;
-    });
-
-    builder.addCase(getAllProducts.fulfilled, (state, { payload }) => {
-      if (state.productsList.length == 0) {
-        state.productsList.push(...payload);
-      }
-      state.status = "idle";
-      payload.map((product: Product) => {
-        if (!state.categories.includes(product.category))
-          state.categories.push(product.category);
-        state.filteredData.category = state.categories[0];
-      });
-    });
-
-    builder.addCase(getAllProducts.rejected, (state, { payload }) => {
-      // if (payload) state.error = payload.message;
-      state.status = "failed";
-    });
   },
 });
 
-export const { addProduct, removeProduct, clearCart, changeFilteredData } =
-  productReducer.actions;
+export const {
+  allProducts,
+  addProduct,
+  removeProduct,
+  clearProduct,
+  clearCart,
+  changeMinMaxPrice,
+  changeCategories,
+} = productReducer.actions;

@@ -1,23 +1,19 @@
-import React from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks/index';
-import './CenterText.scss';
+import React from "react";
+import "./CenterText.scss";
 
-type IProps={
-    text:string
-}
+type IProps = {
+  text: string;
+};
 
-const CenterText=(props:IProps)=>{
+const CenterText = (props: IProps) => {
+  const { text } = props;
 
-    const {text}=props;
+  return (
+    <div className="centerText">
+      <p className={`text `}>{text}</p>
+      <p className="line"></p>
+    </div>
+  );
+};
 
-    const { isDarK } = useAppSelector((state) => state.theme);
-
-    return(
-        <div className='centerText'>
-         <p className={`text ${isDarK  ? 'dark' :'light'}`}>{text}</p>
-         <p className='line'></p>
-        </div>
-    )
-}
-
-export default CenterText
+export default CenterText;

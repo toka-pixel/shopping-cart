@@ -1,32 +1,80 @@
-import React, { useEffect } from "react";
-import Categories from "../Categories/Categories";
-import Slider from "../Carousel/Carousel";
-import { getAllProducts } from "../../store/Product/fetchProducts";
+import { useEffect, useState } from "react";
+import Slider from "../SectionsHome/Carousel/Carousel";
+import {
+  allProducts,
+  changeMinMaxPrice,
+  changeCategories,
+} from "../../store/Product/productSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks/index";
-import Products from "../Products/Products";
-import ProductsFilter from "../Products/Products-Filter";
-import Footer from "../Footer/Footer";
-import WomensCollection from '../WomensCollection/WomensCollection';
-import News from "../News/News";
+import ProductsFilter from "../SectionsHome/Products/Products-Filter";
+import WomensCollection from "../SectionsHome/WomensCollection/WomensCollection";
+import News from "../SectionsHome/News/News";
+import {
+  getAllproductsCategories,
+  productsCategory,
+} from "../../services/Product";
+import { changeFilteredData } from "../../store/Filter/filterSlice";
 
 const Home = () => {
   const dispatch = useAppDispatch();
-  const products = useAppSelector((state) => state.product.productsList);
 
+  const [prices, setPrices] = useState<number[]>([]);
+  const {
+    productsList: { products },
+  } = useAppSelector((state) => state.product);
+
+  const category = useAppSelector(
+    (state) => state.filter.filteredData.category
+  );
 
   useEffect(() => {
-    dispatch(getAllProducts());
+    getAllproductsCategories().then((res) => {
+      if (res.data.length > 0) {
+        dispatch(changeCategories(res.data.slice(1, 10)));
+
+        handleproductsCategory(res.data[0]);
+      }
+    });
   }, []);
+
+  useEffect(() => {
+    if (prices?.length > 0) {
+      dispatch(
+        changeMinMaxPrice({
+          min: Math.min(...prices),
+          max: Math.max(...prices),
+        })
+      );
+    }
+  }, [prices]);
+
+  useEffect(() => {
+    handleproductsCategory(category);
+  }, [category]);
+
+  const handleproductsCategory = (category: string) => {
+    setPrices([]);
+    dispatch(
+      changeFilteredData({
+        category,
+        minPrice: null,
+        maxPrice: null,
+      })
+    );
+    productsCategory(category)
+      .then((res) => {
+        dispatch(allProducts(res.data));
+        setPrices(res.data.products?.map((item: any) => item.price));
+      })
+      .catch((e) => console.log(e));
+  };
 
   return (
     <>
       <Slider />
-      {/* <Categories /> */}
-
-      <ProductsFilter products={products} />
+      <ProductsFilter />
       <WomensCollection />
       <News />
-      {/* <Footer /> */}
     </>
   );
 };

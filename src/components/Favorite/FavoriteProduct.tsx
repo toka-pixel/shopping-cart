@@ -3,27 +3,30 @@ import { Product } from "../../types/Product";
 import { useAppDispatch } from "../../hooks";
 import { favoriteItem } from "../../store/Favorite/favoriteSlice";
 import { Row, Col } from "antd";
+import { Link } from "react-router-dom";
 import "./FavoriteProduct.scss";
 
-type IProps = {
+type FavoriteProps = {
   product: Product;
 };
 
-const FavoriteProduct = (props: IProps) => {
-  const { product } = props;
+const FavoriteProduct: React.FC<FavoriteProps> = ({ product }) => {
   const dispatch = useAppDispatch();
 
   const handleFavoriteItem = () => {
     dispatch(favoriteItem(product));
- 
-   
-    
   };
   return (
     <div className="cartProducts">
       <Row className="cartProduct">
         <Col span={5} className="col-product">
-          <img src={product.image} alt="product image" />
+          <Link
+            to={{
+              pathname: `/product/${product?.id}`,
+            }}
+          >
+            <img src={product.thumbnail} alt="product image" />
+          </Link>
         </Col>
         <Col span={12} className="second-col-product">
           <p className="category">{product.category}</p>

@@ -1,0 +1,40 @@
+@import "../../../common//style";
+
+
+.cartProducts {
+    .cartProduct {
+      box-shadow: $boxShadow;
+      border-radius: 8px;
+      padding: 16px;
+      padding-bottom: 0;
+      margin-bottom: 10px;
+      @include text-overflow;
+      @include flex($justify:space-between,$align:flex-start);
+    
+      img {
+        width: 45px;
+        height: 45px;
+      }
+      .title {
+        @include text-overflow;
+        font-size: 13px;
+        width: 146px;
+      }
+      .quantity {
+        padding: 0 12px;
+      }
+      svg {
+        font-size: 15px;
+        color: $green;
+        cursor: pointer;
+      }
+      .price {
+        text-align: end;
+      }
+      .delete svg{
+        color: $red;
+        
+      }
+    }
+  }
+  

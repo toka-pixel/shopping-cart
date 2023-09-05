@@ -1,14 +1,18 @@
+
+
 export type Product = {
+  [x: string]: any;
+  brand: string;
   category: string;
   description: string;
+  discountPercentage: number;
   id: number;
-  image: string;
+  images: string[];
   price: number;
-  rating: {
-    count: number;
-    rate: number;
-  };
+  rating: number;
+  stock: number;
+  thumbnail: string;
   title: string;
   quantity:number,
-  favorite:boolean
+  favorite: boolean;
 };

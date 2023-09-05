@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useAppSelector } from "../../hooks";
-import './footer.scss'
+import { Layout } from "antd";
+import "./footer.scss";
 
 const Footer = () => {
-
   const { isDarK } = useAppSelector((state) => state.theme);
-
+  const { Footer } = Layout;
   return (
-    <div className={`footer ${isDarK ? 'headerFooterDark' : 'headerFooterLight'}`}>
-     @  2022  all rights reserved
-    
-    </div>
+    <Footer
+      className={`footer ${isDarK ? "headerFooterDark" : "headerFooterLight"}`}
+    >
+      @ 2022 all rights reserved
+    </Footer>
   );
 };
 

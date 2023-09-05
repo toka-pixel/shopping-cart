@@ -1,0 +1,36 @@
+@import "../../common/style";
+
+.checkout {
+  padding-top: 20px;
+
+  .cartHead {
+    padding-top: 20px;
+    font-size: 20px;
+    font-weight: 700
+  }
+  .cart{
+   box-shadow: $boxShadow;;
+    padding:14px;
+    .cartProduct {
+      box-shadow: none !important;
+      padding: 0;
+    }
+  }
+//   .checkoutProduct {
+//     @include text-overflow;
+//     box-shadow: $boxShadow;
+//   }
+//   img {
+//     width: 100px !important;
+//     height: 100px !important;
+//     padding-bottom: 14px;
+//   }
+//   .title {
+//     font-size: 17px !important;
+//     font-weight: 600;
+//   }
+//   .price {
+//     font-size: 18px;
+//     font-weight: 600;
+//   }
+}

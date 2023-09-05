@@ -1,6 +1,4 @@
 import React from "react";
-// import AwesomeSlider from "react-awesome-slider";
-// import "react-awesome-slider/dist/styles.css";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";

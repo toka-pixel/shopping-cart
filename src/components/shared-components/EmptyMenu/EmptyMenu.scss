@@ -4,7 +4,8 @@
     // flex: 1;
     // @include flex($display: flex, $justify: center, $align: center);
      text-align: center;
-    @include center-vertical-horizontal();
+  //  @include center-vertical-horizontal();
+  padding: 55px 0;
     .emptyItems {
       img {
         width: 70px;
