@@ -30,9 +30,8 @@ const Home = () => {
   useEffect(() => {
     getAllproductsCategories().then((res) => {
       if (res.data.length > 0) {
-        dispatch(changeCategories(res.data.slice(1, 10)));
-
-        handleproductsCategory(res.data[0]);
+        dispatch(changeCategories((res.data.map((item:{name:string})=>item.name).slice(1, 10))));
+        handleproductsCategory((res.data.map((item:{name:string})=>item.name).slice(1, 10)));
       }
     });
   }, []);
@@ -61,12 +60,14 @@ const Home = () => {
         maxPrice: null,
       })
     );
+
     productsCategory(category)
       .then((res) => {
         dispatch(allProducts(res.data));
         setPrices(res.data.products?.map((item: any) => item.price));
       })
       .catch((e) => console.log(e));
+    
   };
 
   return (

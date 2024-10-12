@@ -17,10 +17,19 @@ export const getOneProduct = (id: any) => {
   });
 };
 
-export const  productsCategory = (category: string) => {
+export const  productsCategory = (category:string) => {
+  let concatenated = category;
+
+  if (typeof category === "string") {
+      const words = category.split(" ");
+      if (words.length === 2) {
+          concatenated = words.join("-");
+      }
+  }
+
   return axios({
     method: "GET",
-    url: `${url}products/category/${category}`,
+    url: `${url}products/category/${concatenated}`,
   });
 };
 

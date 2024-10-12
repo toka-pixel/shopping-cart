@@ -49,7 +49,7 @@ const ProductsFilter = () => {
           <Row gutter={[16, 16]}>
             {filteredProducts?.length > 0 ? (
               filteredProducts.map((product: Product) => {
-                return <Item product={product} />;
+                return <Item product={product} key={product.id} />;
               })
             ) : (
               <div className="not-found">

@@ -38,7 +38,6 @@ const Filter = () => {
   };
 
   const [formData, setFormData] = useReducer(formReducer, {});
-
   const onFinish = (values: any) => {
     dispatch(
       changeFilteredData({
@@ -59,7 +58,7 @@ const Filter = () => {
             value={filteredData.category}
           >
             {Object.keys(categories).map((category, i) => (
-              <Radio value={category}>{category}</Radio>
+              <Radio value={category} key={i}>{category}</Radio>
             ))}
           </Radio.Group>
         </Panel>
